@@ -176,7 +176,8 @@ class TreeGraph extends Graph {
         y: model.y
       });
     }
-    current.set('model', data.data);
+    model.x = data.x;
+    model.y = data.y;
     current.updatePosition({ x: data.x, y: data.y });
   }
   /**
