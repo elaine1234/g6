@@ -229,6 +229,18 @@ describe('tree graph with animate', () => {
       done();
     });
   });
+  it('modify model & refresh', () => {
+    const node = graph.findById('SubTreeNode3');
+    expect(node.getModel().color).to.be.undefined;
+    node.getModel().color = '#ccc';
+    expect(node.getModel().color).to.equal('#ccc');
+    node.refresh();
+    expect(node.getModel().color).to.equal('#ccc');
+    graph.set('animate', false);
+    graph.refreshLayout();
+    expect(node.getModel().color).to.equal('#ccc');
+    graph.set('animate', true);
+  });
   it('collapse & expand', done => {
     graph.removeEvent();
     const parent = graph.findById('SubTreeNode1');
@@ -254,4 +266,5 @@ describe('tree graph with animate', () => {
       graph.emit('node:click', { item: parent });
     }, 600);
   });
+
 });
